@@ -1,5 +1,7 @@
 import streamlit as st
+from PIL import Image
 from image_to_text import get_text
+from prompting import *
 from gen_image import create_series
 #from model.py import --> use model.py as the official model file; use the jupyter notebook (ipynb) as the "testing area"
 
@@ -12,11 +14,21 @@ def home():
     st.title("[software studio project title]")
     st.write("Create images from instructions to help decipher manuals.")
 
-    image = st.camera_input("Take a photo") #there is a problem with enabling camera in the laptop preferences - is this something that Nueva has restricted on this laptop specifically?
+    image_file = st.camera_input("Take a photo") #there is a problem with enabling camera in the laptop preferences - is this something that Nueva has restricted on this laptop specifically?
+
+    #access the image_file as a pillow image
+
+    image = Image.open(image_file)
 
     #model to read text from photo
+
+    text = get_text(image)
+    
     #model/algorithm to take that text and segment it
+
+
     #model to generate images based on text
     #process images into animation
+
 
 home()

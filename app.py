@@ -17,6 +17,7 @@ def home():
     image_file = st.camera_input("Take a photo") #there is a problem with enabling camera in the laptop preferences - is this something that Nueva has restricted on this laptop specifically?
 
     #access the image_file as a pillow image
+    # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input
 
     image = Image.open(image_file)
 

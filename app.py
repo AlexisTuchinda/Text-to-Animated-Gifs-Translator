@@ -18,18 +18,11 @@ def home():
 
     #access the image_file as a pillow image
     # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input
-
-    image = Image.open(image_file)
+    #image = Image.open(image_file)
 
     #model to read text from photo
-
-    text = get_text(image)
+    #text = get_text(image)
     
-    #model/algorithm to take that text and segment it
-
-
-    #model to generate images based on text
-    #process images into animation
 
 
 home()

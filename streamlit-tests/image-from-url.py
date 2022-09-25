@@ -2,4 +2,4 @@
 
 import streamlit as st
 
-st.markdown("![Image](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)") #successful in displaying from url
+st.markdown("![Image]()") #successful in displaying from url

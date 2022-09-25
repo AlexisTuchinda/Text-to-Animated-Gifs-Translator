@@ -1,10 +1,10 @@
-#here is the gen image model --> draft in the jupyter notebook or google colab
+#from the jupyter notebook with a few changes
 
-def gen_image(prompt):
-    #this is where the model checkpoint will go
-    pass
+from bs4 import BeautifulSoup
+import requests
 
-def create_series(prompts):
-    #this is where each individual gen image will run for each prompt
-    #return image series
+def grab_image_sources(prompt):
+    
+
+def show_images(images):
     pass

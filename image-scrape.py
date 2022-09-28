@@ -8,10 +8,10 @@ headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36"
 }
 
-def grab_soup(prompt):
+def grab_soup(prompt, gif=""): #have to pass in that I want the image scraped to be a gif
     
     params = {
-        "q": prompt+"gif", # search query
+        "q": prompt+" "+gif, # search query
         "tbm": "isch",                # image results
         "hl": "en",                   # language of the search
         "gl": "us",                   # country where search comes from

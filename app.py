@@ -1,3 +1,7 @@
+import os
+
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
+
 import streamlit as st
 from PIL import Image
 from image_to_text import get_text
@@ -13,16 +17,14 @@ def home():
     st.title("[software studio project title]")
     st.write("Create images from instructions to help decipher manuals.")
 
-    image_file = st.camera_input("Take a photo")
+    image_file_buffer = st.camera_input("Take a photo")
 
     #access the image_file as a pillow image
     # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input --> something wrong with this processing of the image
-    image = Image.open(image_file)
-
-    #model to read text from photo
-    #text = get_text(image)
-
-    #print (text)
+    if image_file_buffer is not None:
+        image = Image.open(image_file_buffer)
+        text=get_text(image)
+        print (text)
     
 
 

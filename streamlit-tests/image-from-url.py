@@ -2,4 +2,6 @@
 
 import streamlit as st
 
-st.markdown("![Image]()") #successful in displaying from url
+def display_images(images):
+    for url in images: 
+        st.markdown("![Image]("+url+")") #successful in displaying from url

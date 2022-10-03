@@ -1,12 +1,20 @@
 #use pytesseract (follow tutorials) --> create function which will pass in the camera input from app
 
-from PIL import Image
 import pytesseract
 
 pytesseract.tesseract_cmd = r"C:/opt/anaconda3/envs/streamlit/bin" #it's in anaconda navigator!!!!
 
-def get_text(image): #see if this will work without path input
-    text = pytesseract.image_to_string(image)
+def get_text(image): #NOT GOOD ENOUGH --> https://tesseract-ocr.github.io/tessdoc/ImproveQuality.html
+    #figure out what from the link above I can do to improve based on the sample images
+    #https://towardsdatascience.com/image-processing-using-streamlit-d650fb0ccf8
+
+    img= clear_image(image)
+
+    text = pytesseract.image_to_string(img)
     return text
 
-# IT WORKS --> now try plugging this into the image scrape... 
+
+def clear_image(image):
+    #fix skew
+    #get better clarity - binarization method
+    pass

@@ -8,9 +8,9 @@ def get_text(image): #NOT GOOD ENOUGH --> https://tesseract-ocr.github.io/tessdo
     #figure out what from the link above I can do to improve based on the sample images
     #https://towardsdatascience.com/image-processing-using-streamlit-d650fb0ccf8
 
-    img= clear_image(image)
+    #img= clear_image(image)
 
-    text = pytesseract.image_to_string(img)
+    text = pytesseract.image_to_string(image)
     return text
 
 

@@ -34,8 +34,10 @@ def pipeline(image_file_buffer):
 
     #image scrape & display
     for prompt in prompts:
-        temp = load_images(3, prompt, "gif")
+        temp = load_images(1, prompt)
+        print (temp)
         for url in temp:
+            print (url)
             st.markdown("![Image]("+url+")")#display from url
             urls_in_use.append(url)
 

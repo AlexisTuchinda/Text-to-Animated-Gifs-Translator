@@ -26,20 +26,20 @@ def pipeline(image_file_buffer):
     
     #image to text
     text=get_text(image) 
-    print (text)
+    #print (text)
     
     #prompting.py
     prompts = process(text)
-    print(prompts)
+    #print(prompts)
 
     #image scrape & display
     for prompt in prompts:
         temp = load_images(1, prompt)
-        print (temp)
+        #print (temp)
         for url in temp:
-            print (url)
-            st.markdown("![Image]("+url+")")#display from url
-            urls_in_use.append(url)
+            #print (url)
+            st.image(url, prompt, 500) #display from url
+            urls_in_use.append(url) #just in case needs to be referenced for future "saving" capabilities
 
 
 

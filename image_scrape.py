@@ -28,7 +28,7 @@ def get_original_images(prompt):
     soup = grab_soup(prompt)
     google_images = []
 
-    print ("script tags")
+    #print ("script tags")
     all_script_tags = soup.select("script")
    # print (all_script_tags)
     
@@ -94,10 +94,10 @@ def images_to_use(n, images):
     return use
 
 def load_images(n, prompt):
-    print (prompt)
-    print ("loading")
+    #print (prompt)
+    #print ("loading")
     current_search = get_original_images(prompt)
-    print (current_search)
+    #print (current_search)
     selected_images = images_to_use(n, current_search)
-    print (selected_images)
+    #print (selected_images)
     return selected_images

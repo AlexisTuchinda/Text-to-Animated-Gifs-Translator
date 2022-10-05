@@ -11,8 +11,8 @@ def get_prompts(tokens, current = None, prompts = [], i = 0):
         if tokens[i].pos_ == "VERB": #still needs to parse for adverbs
             if current: 
                 prompts.append(current)
-            prompts.append(str(tokens[i]))
-            current = ""
+            #prompts.append(str(tokens[i]))
+            current = str(tokens[i])
         else:
             if not current:
                 current=""

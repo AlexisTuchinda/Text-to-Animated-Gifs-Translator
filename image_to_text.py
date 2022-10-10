@@ -4,7 +4,7 @@ import pytesseract
 import cv2
 import numpy as np
 
-pytesseract.tesseract_cmd = r"C:/opt/anaconda3/envs/streamlit/bin" #it's in anaconda navigator!!!!
+pytesseract.tesseract_cmd = r"C:/opt/anaconda3/envs/streamlit/bin"
 
 def get_text(image): #NOT GOOD ENOUGH --> https://tesseract-ocr.github.io/tessdoc/ImproveQuality.html
     #figure out what from the link above I can do to improve based on the sample images

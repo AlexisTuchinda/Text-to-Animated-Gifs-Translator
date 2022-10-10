@@ -1,26 +1,16 @@
 import os
 
-os.environ['KMP_DUPLICATE_LIB_OK']='True'
+os.environ['KMP_DUPLICATE_LIB_OK']='True' #bypasses an error in local accessing. 
 
 import streamlit as st
+import streamlit.components.v1 as components
 from PIL import Image
 from image_to_text import get_text
 from prompting import process
 from image_scrape import load_images
 
-def home():
-    st.title("[software studio project title]")
-    st.write("Finds images from instructions to help decipher manuals.")
-
-    image_file_buffer = st.camera_input("Take a photo")
-
-    #access the image_file as a pillow image
-    # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input --> something wrong with this processing of the image
-    if image_file_buffer is not None:
-        pipeline(image_file_buffer)
-    
 def pipeline(image_file_buffer):
-    urls_in_use = []
+    urls = []
 
     image = Image.open(image_file_buffer)
     
@@ -32,15 +22,32 @@ def pipeline(image_file_buffer):
     prompts = process(text)
     #print(prompts)
 
-    #image scrape & display
     for prompt in prompts:
         temp = load_images(1, prompt)
-        #print (temp)
-        for url in temp:
-            #print (url)
-            st.image(url, prompt, 500) #display from url
-            urls_in_use.append(url) #just in case needs to be referenced for future "saving" capabilities
+        for url in temp: 
+            urls.append(url)
 
+    #Temporary image scrape & display
+    for prompt in prompts:
+        temp = load_images(1, prompt)
+        for url in temp:
+           st.image(url, prompt, 500) #display from url
+           urls.append(url) #just in case needs to be referenced for future "saving" capabilities
+
+
+def home():
+    st.title("[software studio project title]")
+    st.write("Finds images from Google Search to help decipher instructions from manuals.")
+
+    image_file_buffer = st.camera_input("Take a photo")
+
+    #access the image_file as a pillow image
+    # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input --> something wrong with this processing of the image
+    if image_file_buffer is not None:
+        pipeline(image_file_buffer)
+    #HOW TO DO IMAGE CAROUSEL OR IMAGE SLIDER TO CONTROL IMAGE DISPLAY 
+    #WITHOUT MAKING CODE RUN FOREVER OR HAVING WIDGETS BE RESET EVERY SINGLE TIME?
+    
 
 
 home()

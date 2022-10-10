@@ -22,11 +22,6 @@ def pipeline(image_file_buffer):
     prompts = process(text)
     #print(prompts)
 
-    for prompt in prompts:
-        temp = load_images(1, prompt)
-        for url in temp: 
-            urls.append(url)
-
     #Temporary image scrape & display
     for prompt in prompts:
         temp = load_images(1, prompt)

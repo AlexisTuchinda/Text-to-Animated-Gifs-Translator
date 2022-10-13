@@ -6,21 +6,25 @@ import streamlit as st
 import streamlit.components.v1 as components
 from PIL import Image
 from image_to_text import get_text
-from prompting import process
 from image_scrape import load_images
+import spacy 
+import re
+
+rec = spacy.load("en_core_web_sm")  
 
 def pipeline(image_file_buffer):
+    print ("start of pipe")
     urls = []
 
     image = Image.open(image_file_buffer)
     
     #image to text
-    text=get_text(image) 
-    #print (text)
+    full_text=get_text(image) 
     
     #prompting.py
-    prompts = process(text)
-    #print(prompts)
+
+    plain_text = rec(full_text.rstrip())
+    prompts = re.split("[,.!?]", str(plain_text))
 
     #Temporary image scrape & display
     for prompt in prompts:

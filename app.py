@@ -26,8 +26,8 @@ def pipeline(image_file_buffer):
     for prompt in prompts:
         temp = load_images(1, prompt)
         for url in temp:
-           st.image(url, prompt, 500) #display from url
-           urls.append(url) #just in case needs to be referenced for future "saving" capabilities
+            st.image(url, prompt, 500) #display from url
+            urls.append(url) #just in case needs to be referenced for future "saving" capabilities
 
 
 def home():

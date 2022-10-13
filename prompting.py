@@ -2,27 +2,22 @@ import spacy
 
 rec = spacy.load("en_core_web_sm")  
 
-
-# THIS IS JUST A BAD ALGORITHM. THIS NEEDS TO BE IMPROVED FOR BETTER PROMPT CREATION
-def get_prompts(tokens, current = None, prompts = [], i = 0):
-    #recursive function to generate prompts
-  
-    if i > len(tokens)-1:
-        return prompts
-    if tokens[i] is not None: 
-        if tokens[i].pos_ == "VERB" or tokens[i].pos_ == "PUNCT": #still needs to parse for adverbs
-            if current: 
+def get_prompts(tokens):
+    prompts = []
+    current = None
+    for token in tokens:
+        if token.pos_ == "VERB":
+            if current:
                 prompts.append(current)
-            if tokens[i].pos_ == "VERB":
-                current = str(tokens[i])
-            else:
-                current = ""
+            current=str(token)
+        elif token.pos_ == "PUNCT":
+            if current:
+                prompts.append(current)
+                current = None
         else:
-            if not current:
-                current=""
-            current += " " #spacing purposes 
-            current+=str(tokens[i])
-    return get_prompts(tokens, current, prompts, i+1)
+            if current: 
+                current += " "+str(token)
+    return prompts            
 
 def process(text):
 

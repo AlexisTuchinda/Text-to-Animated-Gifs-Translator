@@ -5,7 +5,6 @@ import cv2
 import numpy as np
 import streamlit as st
 
-
 pytesseract.tesseract_cmd = r"C:/opt/anaconda3/envs/streamlit/bin"
 
 def get_text(image):
@@ -17,12 +16,22 @@ def get_text(image):
     #https://pyimagesearch.com/2021/11/15/tesseract-page-segmentation-modes-psms-explained-how-to-improve-your-ocr-accuracy/
 
     text = pytesseract.image_to_string(img, config = config, lang='eng')
+    st.write(text)
+
     return text
 
 
 def clear_image(image):
     #clearing noise and turning image to gray to better isolate
-    noiseless_image_bw = cv2.fastNlMeansDenoising(np.array(image), None, 20, 7, 21) 
+    noiseless_image_bw = cv2.fastNlMeansDenoising(np.array(image), None, 15, 7, 21) 
     im_gray = cv2.cvtColor(noiseless_image_bw, cv2.COLOR_BGR2GRAY)
 
-    return im_gray
+    st.image(noiseless_image_bw)
+    st.image(im_gray)
+
+    #th2 = cv2.adaptiveThreshold(im_gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+    #        cv2.THRESH_BINARY,11,2)
+
+    #st.image(th2)
+
+    return im_gray 

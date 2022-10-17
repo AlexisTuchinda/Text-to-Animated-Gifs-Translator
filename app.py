@@ -3,28 +3,26 @@ import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True' #bypasses an error in local accessing. 
 
 import streamlit as st
-import streamlit.components.v1 as components
+#import streamlit.components.v1 as components
 from PIL import Image
 from image_to_text import get_text
 from image_scrape import load_images
-import spacy 
 import re
 
-rec = spacy.load("en_core_web_sm")  
 
 def pipeline(image_file_buffer):
-    print ("start of pipe")
     urls = []
 
     image = Image.open(image_file_buffer)
+
+    #generate testing cases
+    #image.save("Testing/Unit-Tests/sample-5.jpg")
     
     #image to text
     full_text=get_text(image) 
-    
-    #prompting.py
-
-    plain_text = rec(full_text.rstrip())
-    prompts = re.split("[,.!?]", str(plain_text))
+   
+    #segment by sentence and use that to look for gifs
+    prompts = re.split("[,.!?]", str(full_text))
 
     #Temporary image scrape & display
     for prompt in prompts:
@@ -44,6 +42,7 @@ def home():
     # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input --> something wrong with this processing of the image
     if image_file_buffer is not None:
         pipeline(image_file_buffer)
+
     #HOW TO DO IMAGE CAROUSEL OR IMAGE SLIDER TO CONTROL IMAGE DISPLAY 
     #WITHOUT MAKING CODE RUN FOREVER OR HAVING WIDGETS BE RESET EVERY SINGLE TIME?
     

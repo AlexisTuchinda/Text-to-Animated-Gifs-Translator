@@ -36,7 +36,8 @@ def home():
     st.title("[software studio project title]")
     st.write("Finds images from Google Search to help decipher instructions from manuals.")
 
-    image_file_buffer = st.camera_input("Take a photo")
+    #image_file_buffer = st.camera_input("Take a photo")
+    image_file_buffer = "Testing/Unit-Tests/sample-2.jpg"
 
     #access the image_file as a pillow image
     # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input --> something wrong with this processing of the image

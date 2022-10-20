@@ -33,11 +33,14 @@ def clear_image(img):
     #clearing noise 
     noiseless_image_bw = cv2.fastNlMeansDenoising(np.array(img), None, 15, 7, 21) #the third attribute should be adjusted based on size of text?
     
-    #turning to gray to isolate letters
+    #turning to gray to isolate letters & inverting to make lettering more clear
     im_gray = cv2.cvtColor(noiseless_image_bw, cv2.COLOR_BGR2GRAY)
+    gray = cv2.bitwise_not(im_gray)
 
+
+    #debugging
     st.image(noiseless_image_bw)
-    #st.image(image_edges)
     st.image(im_gray)
-
-    return im_gray 
+    st.image(gray)
+    
+    return gray 

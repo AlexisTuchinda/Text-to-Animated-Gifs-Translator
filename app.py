@@ -22,7 +22,7 @@ def pipeline(image_file_buffer):
     full_text=get_text(image) 
    
     #segment by sentence and use that to look for gifs
-    prompts = re.split("[,.!?]", str(full_text))
+    prompts = re.split("[.!?]", str(full_text))
 
     #Temporary image scrape & display
     for prompt in prompts:
@@ -37,7 +37,7 @@ def home():
     st.write("Finds images from Google Search to help decipher instructions from manuals.")
 
     #image_file_buffer = st.camera_input("Take a photo")
-    image_file_buffer = "Testing/Unit-Tests/sample-2.jpg"
+    image_file_buffer = "Testing/Unit-Tests/sample-5.jpg"
 
     #access the image_file as a pillow image
     # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input --> something wrong with this processing of the image

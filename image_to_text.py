@@ -12,7 +12,6 @@ def get_text(image):
     #currently the resizing seems to work, but the tesseract data box is not doing it around the text... 
     #img= clear_image(transform(image)) 
 
-    resize_text(image)
     img = clear_image(np.array(image))
 
     #account for "waviness" / perspective on image?: https://stackoverflow.com/questions/64099248/pytesseract-improve-ocr-accuracy
@@ -28,12 +27,17 @@ def transform(image):
    pass
 
 def clear_image(img):
+    #debugging purposes
+    st.image(img)
+
+    #clearing noise 
+    noiseless_image_bw = cv2.fastNlMeansDenoising(np.array(img), None, 15, 7, 21) #the third attribute should be adjusted based on size of text?
     
-    #clearing noise and turning image to gray to better isolate
-    noiseless_image_bw = cv2.fastNlMeansDenoising(img, None, 10, 7, 21) 
+    #turning to gray to isolate letters
     im_gray = cv2.cvtColor(noiseless_image_bw, cv2.COLOR_BGR2GRAY)
 
     st.image(noiseless_image_bw)
+    #st.image(image_edges)
     st.image(im_gray)
 
     return im_gray 

@@ -3,7 +3,7 @@ from image_scrape import load_images
 from prompts import make_prompts
 import streamlit as st
 
-image_file_buffer = "Testing/Unit-Tests/sample-5.jpg"
+image_file_buffer = "Testing/Unit-Tests/sample-5.jpg" #change image here
 
 def test_preprocessing():
     st.write("testing preprocessing")
@@ -16,11 +16,17 @@ def test_tesseract():
 def test_scrape():
     st.write("testing scrape correspond to prompts")
     prompts = [""] #input random prompts that follow from a manual
-    load_data(prompts)
+    load_images(prompts)
 
 def test_prompts():
     text = "" #this may just work from taking one of the outputs from a non-testing run
     make_prompts(text)
+
+def test_pipeline():
+    for prompt in make_prompts(get_text(image_file_buffer)):
+        temp = load_images(1, prompt)
+        for url in temp:
+            st.image(url, prompt, 500) #display from url
 
 def current_tests():
     #insert desired tests to run here - this function is passed to app.py and run all the time

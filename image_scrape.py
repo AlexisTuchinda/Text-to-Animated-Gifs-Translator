@@ -94,10 +94,7 @@ def images_to_use(n, images):
     return use
 
 def load_images(n, prompt):
-    #print (prompt)
-    #print ("loading")
+    
     current_search = get_original_images(prompt)
-    #print (current_search)
     selected_images = images_to_use(n, current_search)
-    #print (selected_images)
     return selected_images

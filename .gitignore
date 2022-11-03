@@ -1,0 +1,5 @@
+# Python file execution cache
+**/__pycache__
+
+# Virtual environment
+**/env

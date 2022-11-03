@@ -3,3 +3,13 @@ Currently a web-based app using a camera to read the instructions from a manual 
 Created Fall Semester 2022. 
 
 Project Documentation found at this link, updated before 10/21/22: https://docs.google.com/document/d/1fNL8oxtzxbjh3f0KDXi9DO-BpGAHF632YQCGeb7ulQo/edit# 
+
+## Usage
+
+### conda
+
+Follow documentation: https://docs.google.com/document/d/1fNL8oxtzxbjh3f0KDXi9DO-BpGAHF632YQCGeb7ulQo/edit# 
+
+### pip
+
+Install dependencies with `pip install requirements.txt`

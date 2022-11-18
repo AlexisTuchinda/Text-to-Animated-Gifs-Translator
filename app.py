@@ -40,7 +40,7 @@ def pipeline(image_file_buffer):
 
 def home():
     st.title("Instructo-drawer 3000 or something idk this is the title")
-    st.write("Finds images from Google Search to help decipher instructions from manuals.")
+    st.write("Generates images to help decipher instructions from manuals.")
 
     #camera input
     image_file_buffer = st.camera_input("Take a photo")

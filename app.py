@@ -5,8 +5,9 @@ os.environ['KMP_DUPLICATE_LIB_OK']='True' #bypasses an error in local accessing.
 import streamlit as st
 #import streamlit.components.v1 as components
 from PIL import Image
+from image_gen import gen_images
 from image_to_text import get_text
-from image_scrape import load_images
+from image_scrape import load_images #Replaced with gen_images
 from prompts import make_prompts
 from testing import current_tests
 
@@ -23,11 +24,11 @@ def pipeline(image_file_buffer):
     full_text=get_text(image) 
    
     #segment by sentence and use that to look for gifs
-    prompts = make_prompts (full_text)
+    prompts = make_prompts(full_text)
 
     #Temporary image scrape & display
     for prompt in prompts:
-        temp = load_images(1, prompt)
+        temp = gen_images(prompt) #load_images replaced
         for url in temp:
             st.image(url, prompt, 500) #display from url
             urls.append(url) #just in case needs to be referenced for future "saving" capabilities
@@ -38,8 +39,8 @@ def pipeline(image_file_buffer):
 
 
 def home():
-    st.title("[software studio project title]")
-    st.write("Finds images from Google Search to help decipher instructions from manuals.")
+    st.title("Instructo-drawer 3000 or something idk this is the title")
+    st.write("Generates images to help decipher instructions from manuals.")
 
     #camera input
     image_file_buffer = st.camera_input("Take a photo")

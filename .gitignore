@@ -1,0 +1,8 @@
+# DS_Store cache
+**/.DS_Store
+
+# Python file execution cache
+**/__pycache__
+
+# Virtual environment
+**/env

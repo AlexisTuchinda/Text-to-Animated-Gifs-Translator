@@ -1,0 +1,20 @@
+.carousel-control-next-icon {
+    /* add a transparent background color & border */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.carousel-control-prev-icon {
+    /* add a transparent background color & border */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+
+}
+
+.caption h4 {
+    /* add a background and (ugly) styling to make the h4 readable */
+    color: black;
+    background-color: white;
+    border: solid 1px gray;
+    border-radius: 10px;
+}

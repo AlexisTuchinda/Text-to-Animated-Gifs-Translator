@@ -5,8 +5,9 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "True"  # bypasses an error in local access
 import streamlit as st
 import streamlit.components.v1 as components
 from PIL import Image
+from image_gen import gen_images
 from image_to_text import get_text
-from image_scrape import load_images
+from image_scrape import load_images #Replaced with gen_images
 from prompts import make_prompts
 from testing import current_tests
 
@@ -28,6 +29,7 @@ def pipeline(image_file_buffer):
     # SEE CAROUSSEL.md
     _carousel = components.declare_component("image_carousel", path="carousel/build")
 
+
     for prompt in prompts:
         prompt.replace("\n", "")
         temp = load_images(1, prompt)
@@ -43,16 +45,13 @@ def pipeline(image_file_buffer):
     else:
         st.write("error")
 
-    # HOW TO DO IMAGE CAROUSEL OR IMAGE SLIDER TO CONTROL IMAGE DISPLAY
-    # WITHOUT MAKING CODE RUN FOREVER OR HAVING WIDGETS BE RESET EVERY SINGLE TIME?
-    # formatting would be nice
-
 
 def home():
-    st.title("[software studio project title]")
+    st.title("TAG")
     st.write(
-        "Finds images from Google Search to help decipher instructions from manuals."
+        "Either finds images from Google Search or generates images from OpenAI to help decipher instructions from manuals."
     )
+
 
     # camera input
     image_file_buffer = st.camera_input("Take a photo")

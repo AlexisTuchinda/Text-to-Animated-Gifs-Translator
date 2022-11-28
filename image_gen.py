@@ -1,6 +1,7 @@
 import openai
 
-openai.api_key = '[insert api key (ofc i wont give you mine)]'
+#remember to remove API key when pushing!
+openai.api_key = 'API Key'
 
 def gen_images(prompt):
     try:

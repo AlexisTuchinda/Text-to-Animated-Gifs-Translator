@@ -42,15 +42,15 @@ def home():
     st.title("Instructo-drawer 3000 or something idk this is the title")
     st.write("Generates images to help decipher instructions from manuals.")
 
+    
     #camera input
     image_file_buffer = st.camera_input("Take a photo")
 
     #see testing.py for module testing
 
-    #access the image_file as a pillow image
-    # double-check https://docs.streamlit.io/library/api-reference/widgets/st.camera_input --> something wrong with this processing of the image
     if image_file_buffer is not None:
         pipeline(image_file_buffer)
+    
 
     
 home()

@@ -32,7 +32,14 @@ def pipeline(image_file_buffer):
 
     for prompt in prompts:
         prompt.replace("\n", "")
+
+        #Google Search Option
         temp = load_images(1, prompt)
+
+        #Image Generation Option --> remember to put api key in if used
+#        temp = gen_images(prompt) 
+
+
         try:
             urls.append(temp[0])
         except:
@@ -54,9 +61,12 @@ def home():
     )
 
     # camera input
-    image_file_buffer = st.camera_input("Take a photo")
-    if image_file_buffer is not None:
-        pipeline(image_file_buffer)
+    # image_file_buffer = st.camera_input("Take a photo")
+    # if image_file_buffer is not None:
+    #     pipeline(image_file_buffer)
+
+    # Testing Image
+    pipeline("Testing/Unit-Tests/sample-5.jpg")
     
 
 

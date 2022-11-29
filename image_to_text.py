@@ -9,12 +9,9 @@ pytesseract.tesseract_cmd = r"C:/opt/anaconda3/envs/streamlit/bin"
 
 def get_text(image):
 
-    #currently the resizing seems to work, but the tesseract data box is not doing it around the text... 
-    #img= clear_image(transform(image)) 
-
     img = clear_image(np.array(image))
 
-    #account for "waviness" / perspective on image?: https://stackoverflow.com/questions/64099248/pytesseract-improve-ocr-accuracy
+    # https://stackoverflow.com/questions/64099248/pytesseract-improve-ocr-accuracy
     config = '--oem 3 --psm %d' % 3 #psm = page segmentation; "single character recognition" = psm 10 --> but we want full page (see resource below)
     #https://pyimagesearch.com/2021/11/15/tesseract-page-segmentation-modes-psms-explained-how-to-improve-your-ocr-accuracy/
 
@@ -22,9 +19,6 @@ def get_text(image):
     st.write(text)
 
     return text
-
-def transform(image):
-   pass
 
 def clear_image(img):
     #debugging purposes

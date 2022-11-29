@@ -1,4 +1,4 @@
-# nueva_soft-eng_project
+# TAG: Text to Animated GIFS translator
 Currently a web-based app using a camera to read the instructions from a manual and output an animated image demonstrating those instructions. This is designed to help those who are unfamiliar with English, or are still learning English, to understand dense and complicated text.
 Created Fall Semester 2022. 
 

@@ -26,6 +26,7 @@ def pipeline(image_file_buffer):
 
     # Temporary image scrape & display
     urls = []
+
     # SEE CAROUSSEL.md
     _carousel = components.declare_component("image_carousel", path="carousel/build")
 
@@ -56,6 +57,10 @@ def pipeline(image_file_buffer):
 def home():
     #logo
     #st.image()
+
+    #instructions - find a way to make this section a drop down?
+    st.write("Demonstration: ")
+    st.image("res/instructions-tag.gif") 
 
     #camera input
     image_file_buffer = st.camera_input("Take a photo")

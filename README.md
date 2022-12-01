@@ -19,3 +19,7 @@ Follow documentation: https://docs.google.com/document/d/1fNL8oxtzxbjh3f0KDXi9DO
 ### pip
 
 Install dependencies with `pip install requirements.txt`
+
+### Mobile options
+
+Follow link: https://huggingface.co/spaces/aletuch/read-text-to-gif/tree/main 

@@ -5,6 +5,7 @@ import cv2
 import numpy as np
 import streamlit as st
 
+#this is the exe file for tesseract
 pytesseract.tesseract_cmd = r"C:/opt/anaconda3/envs/streamlit/bin"
 
 def get_text(image):
@@ -24,6 +25,8 @@ def clear_image(img):
     #debugging purposes
     st.image(img)
 
+    cut_away()
+
     #clearing noise 
     #the third attribute should be played around between 10 - 15; seems to be good range to at least make the image clearer for tesseract to interpret... 
     noiseless_image_bw = cv2.fastNlMeansDenoising(np.array(img), None, 15, 7, 21) 
@@ -38,3 +41,7 @@ def clear_image(img):
     st.image(gray)
     
     return gray 
+
+def cut_away():
+    #https://learnopencv.com/automatic-document-scanner-using-opencv/#Getting-Started-with-OpenCV-Document-Scanner
+    pass

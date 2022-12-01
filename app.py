@@ -31,7 +31,7 @@ def pipeline(image_file_buffer):
 
 
     for prompt in prompts:
-        prompt.replace("\n", "")
+        prompt.replace("\n", ".")
 
         #Google Search Option
         temp = load_images(1, prompt)
@@ -47,26 +47,23 @@ def pipeline(image_file_buffer):
 
     if len(urls) == len(prompts):
         _carousel(
-            urls=urls, prompts=prompts, height=850
+            urls=urls, prompts=prompts, height=500
         )  # needs the urls and prompts, they need to be the same length, and the height of the carousel
     else:
         st.write("error")
 
 
 def home():
+    #logo
+    #st.image()
 
-    st.title("TAG")
-    st.write(
-        "Either finds images from Google Search or generates images from OpenAI to help decipher instructions from manuals."
-    )
-
-    # camera input
-    # image_file_buffer = st.camera_input("Take a photo")
-    # if image_file_buffer is not None:
-    #     pipeline(image_file_buffer)
+    #camera input
+    image_file_buffer = st.camera_input("Take a photo")
+    if image_file_buffer is not None:
+        pipeline(image_file_buffer)
 
     # Testing Image
-    pipeline("Testing/Unit-Tests/sample-5.jpg")
+    #pipeline("Testing/Unit-Tests/sample-5.jpg")
     
 
 

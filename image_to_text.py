@@ -4,9 +4,12 @@ import pytesseract
 import cv2
 import numpy as np
 import streamlit as st
+import imutils
+
+from scanner import scan
 
 #this is the exe file for tesseract
-pytesseract.tesseract_cmd = r"C:/opt/anaconda3/envs/streamlit/bin"
+pytesseract.tesseract_cmd = "tesseract_exe/tesseract"
 
 def get_text(image):
 
@@ -21,11 +24,13 @@ def get_text(image):
 
     return text
 
-def clear_image(img):
+def clear_image(image):
     #debugging purposes
+    img = imutils.rotate(image, 270)
     st.image(img)
 
-    cut_away()
+    test_scan = scan(img)
+    st.image(test_scan)
 
     #clearing noise 
     #the third attribute should be played around between 10 - 15; seems to be good range to at least make the image clearer for tesseract to interpret... 
@@ -42,6 +47,3 @@ def clear_image(img):
     
     return gray 
 
-def cut_away():
-    #https://learnopencv.com/automatic-document-scanner-using-opencv/#Getting-Started-with-OpenCV-Document-Scanner
-    pass

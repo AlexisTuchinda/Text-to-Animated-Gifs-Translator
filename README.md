@@ -22,4 +22,4 @@ Install dependencies with `pip install requirements.txt`
 
 ### Mobile options
 
-Follow link: https://huggingface.co/spaces/aletuch/read-text-to-gif/tree/main 
+Follow link: 

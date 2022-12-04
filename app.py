@@ -12,6 +12,7 @@ from prompts import make_prompts
 from testing import current_tests
 
 
+
 def pipeline(image_file_buffer):
     image = Image.open(image_file_buffer)
 
@@ -60,12 +61,12 @@ def home():
         st.image("res/instructions-tag.gif") 
 
     #camera input
-    #image_file_buffer = st.camera_input("Take a photo")
-    #if image_file_buffer is not None:
-    #    pipeline(image_file_buffer)
+    image_file_buffer = st.camera_input("Take a photo")
+    if image_file_buffer is not None:
+        pipeline(image_file_buffer)
 
-    # Testing Image
-    pipeline("Testing/Unit-Tests/Phone/phone-pic.jpg")
+    # Testing Image - this is messing me up, the clarity of the image is making tesseract seem better than it is
+    #pipeline("Testing/Unit-Tests/Phone/phone-pic.jpg")
     
 
 

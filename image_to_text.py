@@ -29,8 +29,8 @@ def clear_image(image):
     img = imutils.rotate(image, 270)
     st.image(img)
 
-    test_scan = scan(img)
-    st.image(test_scan)
+    #test_scan = scan(img)
+    #st.image(test_scan)
 
     #clearing noise 
     #the third attribute should be played around between 10 - 15; seems to be good range to at least make the image clearer for tesseract to interpret... 

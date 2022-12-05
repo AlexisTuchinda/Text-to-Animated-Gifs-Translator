@@ -71,13 +71,16 @@ def get_original_images(prompt):
         
     #creating list of elements with following attributes for indexing
     for index, (metadata, thumbnail, original) in enumerate(zip(soup.select(".isv-r.PNCib.MSM1fd.BUooTd"), thumbnails, full_res_images), start=1):
-        google_images.append({
-            "title": metadata.select_one(".VFACy.kGQAp.sMi44c.lNHeqe.WGvvNb")["title"],
-            "link": metadata.select_one(".VFACy.kGQAp.sMi44c.lNHeqe.WGvvNb")["href"],
-            "source": metadata.select_one(".fxgdke").text,
-            "thumbnail": thumbnail,
-            "original": original
-        })
+        try: 
+            google_images.append({
+                "title": metadata.select_one(".VFACy.kGQAp.sMi44c.lNHeqe.WGvvNb")["title"],
+                "link": metadata.select_one(".VFACy.kGQAp.sMi44c.lNHeqe.WGvvNb")["href"],
+                "source": metadata.select_one(".fxgdke").text,
+                "thumbnail": thumbnail,
+                "original": original
+            })
+        except: 
+            continue
 
     #print (google_images)
     

@@ -1,6 +1,7 @@
 import cv2
 import streamlit as st
 import numpy as np
+import math
 
 def order_points(pts):
     '''Rearrange coordinates to order:
@@ -21,7 +22,7 @@ def order_points(pts):
     # return the ordered coordinates
     return rect.astype('int').tolist()
 
-def find_dest(pts): #need to fix finding this final destination function
+#def find_dest(pts):
     (tl, tr, br, bl) = pts
     # Finding the maximum width.
     widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
@@ -38,6 +39,9 @@ def find_dest(pts): #need to fix finding this final destination function
     return order_points(destination_corners)
 
 def scan(img):
+
+    st.image(img)
+
     # Resize image to workable size
     dim_limit = 1080
     max_dim = max(img.shape)
@@ -46,9 +50,15 @@ def scan(img):
         img = cv2.resize(img, None, fx=resize_scale, fy=resize_scale)
     # Create a copy of resized original image for later use
     orig_img = img.copy()
+
+
     # Repeated Closing operation to remove text from the document.
     kernel = np.ones((5, 5), np.uint8)
     img = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel, iterations=3)
+
+    st.image(img)
+
+
     # GrabCut
     mask = np.zeros(img.shape[:2], np.uint8)
     bgdModel = np.zeros((1, 65), np.float64)
@@ -57,6 +67,8 @@ def scan(img):
     cv2.grabCut(img, mask, rect, bgdModel, fgdModel, 5, cv2.GC_INIT_WITH_RECT)
     mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
     img = img * mask2[:, :, np.newaxis]
+
+    st.image(img)
  
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gray = cv2.GaussianBlur(gray, (11, 11), 0)
@@ -71,28 +83,50 @@ def scan(img):
  
     # Finding contours for the detected edges.
     contours, hierarchy = cv2.findContours(canny, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+    
     # Keeping only the largest detected contour.
     page = sorted(contours, key=cv2.contourArea, reverse=True)[:5]
+
+    st.write(page)
  
     # Detecting Edges through Contour approximation.
     # Loop over the contours.
+    corners = None
     if len(page) == 0:
         return orig_img
     for c in page:
         # Approximate the contour.
         epsilon = 0.02 * cv2.arcLength(c, True)
-        corners = cv2.approxPolyDP(c, epsilon, True)
+        current_corners = cv2.approxPolyDP(c, epsilon, True)
         # If our approximated contour has four points.
-        if len(corners) == 4:
-            break
-    # Sorting the corners and converting them to desired shape.
-    corners = sorted(np.concatenate(corners).tolist())
-    # For 4 corner points being detected.
-    corners = order_points(corners)
- 
-    destination_corners = find_dest(corners)
+        if len(current_corners) == 4:
+            st.write("hit")
+            if not corners:
+                st.write("setting corners")
+                corners = sorted(np.concatenate(corners).tolist())
+                corners = order_points(corners)
+            else:
+                current = sorted(np.concatenate(current_corners).tolist())
+                current = order_points(current)
+
+                corners_area = math.sqrt((corners[1][0]-corners[0][0])^2 + (corners[1][1]-corners[0][1])^2)*math.sqrt((corners[2][0]-corners[1][0])^2 + (corners[2][1]-corners[1][1])^2)
+                current_area = math.sqrt((current[1][0]-current[0][0])^2 + (current[1][1]-current[0][1])^2)*math.sqrt((current[2][0]-current[1][0])^2 + (current[2][1]-current[1][1])^2)
+
+                if current_area >= corners_area:
+                    corners = current
+
+    # # Sorting the corners and converting them to desired shape.
+    # corners = sorted(np.concatenate(corners).tolist())
+    # # For 4 corner points being detected.
+    # corners = order_points(corners)
  
     h, w = orig_img.shape[:2]
+
+    st.write(corners)
+    
+    destination_corners = order_points([[0, 0], [0, h], [w, h], [w, 0]])
+    st.write(destination_corners)
+ 
     # Getting the homography.
     M = cv2.getPerspectiveTransform(np.float32(corners), np.float32(destination_corners))
     # Perspective transform using homography.

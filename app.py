@@ -5,11 +5,11 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "True"  # bypasses an error in local access
 import streamlit as st
 import streamlit.components.v1 as components
 from PIL import Image
-from image_gen import gen_images
+from holding.image_gen import gen_images
 from image_to_text import get_text
 from image_scrape import load_images #Replaced with gen_images
 from prompts import make_prompts
-from testing import current_tests
+from Testing.testing import current_tests
 
 
 
@@ -34,9 +34,6 @@ def pipeline(image_file_buffer):
 
         #Google Search Option
         temp = load_images(1, prompt)
-
-        #Image Generation Option --> remember to put api key in if used
-#        temp = gen_images(prompt) 
 
         try:
             urls.append(temp[0])
@@ -64,9 +61,6 @@ def home():
     if image_file_buffer is not None:
        pipeline(image_file_buffer)
 
-    # Testing Image - this is messing me up, the clarity of the image is making tesseract seem better than it is
-    #pipeline("Testing/Unit-Tests/Phone/phone-pic.jpg")
-    #pipeline("Testing/Unit-Tests/Computer/sample-5.jpg")
     
 
 

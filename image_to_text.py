@@ -6,10 +6,10 @@ import numpy as np
 import streamlit as st
 import imutils
 
-from scanner import scan
+from holding.scanner import scan
 
-#this is the exe file for tesseract
-pytesseract.tesseract_cmd = "tesseract_exe/tesseract"
+#this is the exe file, originally supported for local hosting of this app
+pytesseract.tesseract_cmd = "holding/tesseract_exe/tesseract"
 
 def get_text(image):
 

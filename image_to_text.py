@@ -25,12 +25,9 @@ def get_text(image):
     return text
 
 def clear_image(img):
-    #debugging purposes - for phone only
-    #img = imutils.rotate(image, 270)
-    #st.image(img)
 
-    test = scan(img)
-    st.image(test)
+    #test = scan(img)
+    #st.image(test)
 
     #clearing noise 
     #the third attribute should be played around between 10 - 15; seems to be good range to at least make the image clearer for tesseract to interpret... 

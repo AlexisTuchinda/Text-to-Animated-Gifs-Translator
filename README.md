@@ -22,4 +22,4 @@ Install dependencies with `pip install requirements.txt`
 
 ### Mobile options
 
-Follow link: 
+Follow link: https://alexistuchinda-tag.streamlit.app/ 

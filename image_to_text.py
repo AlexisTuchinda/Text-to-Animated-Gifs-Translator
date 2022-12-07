@@ -31,7 +31,7 @@ def clear_image(img):
 
     #clearing noise 
     #the third attribute should be played around between 10 - 15; seems to be good range to at least make the image clearer for tesseract to interpret... 
-    noiseless_image_bw = cv2.fastNlMeansDenoising(np.array(img), None, 15, 7, 21) 
+    #noiseless_image_bw = cv2.fastNlMeansDenoising(np.array(img), None, 15, 7, 21) 
     
     #turning to gray to isolate letters & inverting to make lettering more clear
     im_gray = cv2.cvtColor(noiseless_image_bw, cv2.COLOR_BGR2GRAY)

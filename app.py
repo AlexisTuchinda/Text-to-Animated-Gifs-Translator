@@ -25,9 +25,7 @@ def pipeline(image_file_buffer):
     # Temporary image scrape & display
     urls = []
 
-    # SEE CAROUSSEL.md
     _carousel = components.declare_component("image_carousel", path="carousel/build")
-
 
     for prompt in prompts:
         prompt.replace("\n", " ")

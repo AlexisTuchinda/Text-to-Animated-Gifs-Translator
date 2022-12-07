@@ -1,4 +1,4 @@
-from image_gen import gen_images
+from holding.image_gen import gen_images
 from image_to_text import clear_image, get_text
 from image_scrape import load_images
 from prompts import make_prompts

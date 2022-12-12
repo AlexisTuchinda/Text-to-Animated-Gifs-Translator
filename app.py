@@ -5,7 +5,6 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "True"  # bypasses an error in local access
 import streamlit as st
 import streamlit.components.v1 as components
 from PIL import Image
-from holding.image_gen import gen_images
 from image_to_text import get_text
 from image_scrape import load_images #Replaced with gen_images
 from prompts import make_prompts

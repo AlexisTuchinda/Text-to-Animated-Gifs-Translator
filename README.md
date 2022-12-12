@@ -22,4 +22,5 @@ Install dependencies with `pip install requirements.txt`
 
 ### Mobile options
 
-Follow link: https://alexistuchinda-tag.streamlit.app/ 
+Follow link for camera capabilities: https://alexistuchinda-tag-camera.streamlit.app/ 
+Follow link for upload capabilities: https://alexistuchinda-tag-upload.streamlit.app/ 

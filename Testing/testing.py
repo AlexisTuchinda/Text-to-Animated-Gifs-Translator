@@ -1,5 +1,5 @@
 from holding.image_gen import gen_images
-from image_to_text import clear_image, get_text
+from image_to_text import get_text
 from image_scrape import load_images
 from prompts import make_prompts
 import streamlit as st
@@ -10,10 +10,6 @@ def test_generate():
     st.write("testing image generation corresponding to prompts")
     prompts = [""] #input random prompts that follow from a manual
     gen_images(prompts)
-
-def test_preprocessing():
-    st.write("testing preprocessing")
-    clear_image(image_file_buffer)
 
 def test_tesseract():
     st.write("testing tesseract")

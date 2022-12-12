@@ -50,16 +50,20 @@ def home():
     #logo
     st.title("Text to Animated GIFs (TAG)")
 
+    
     #instructions - find a way to make this section a drop down?
-    with st.expander("Instruction"):
-        st.image("res/instructions-tag.gif") 
+    #with st.expander("Instruction"):
+    #    st.image("res/instructions-tag.gif") 
 
     #camera input
-    image_file_buffer = st.camera_input("Take a photo")
-    if image_file_buffer is not None:
-       pipeline(image_file_buffer)
-
+    #image_file_buffer = st.camera_input("Take a photo")
+    #if image_file_buffer is not None:
+    #   pipeline(image_file_buffer)
     
+
+    image = st.file_uploader("Upload photo of page / document", [".png", ".jpg", ".jpeg"])    
+    if image is not None:
+        pipeline(image)
 
 
 home()

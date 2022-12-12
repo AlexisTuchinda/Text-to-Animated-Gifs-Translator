@@ -4,37 +4,54 @@ import pytesseract
 import cv2
 import numpy as np
 import streamlit as st
+import imutils
+
 
 from holding.scanner import scan
 
 #this is connection to exe file, originally supported for local hosting of this app
 pytesseract.tesseract_cmd = "holding/tesseract_exe/tesseract"
+#there is a packages txt for utilizing tesseract on the streamlit app (public)
 
 def get_text(image):
-    selected = False #just to regulate sync between drop down option and the pipeline 
-
-    option = st.selectbox("", ("Are you using a phone 📱 or a computer 💻?", "Phone 📱", "Computer 💻"))
     
-    if option == "Computer 💻":
-        selected = True
-        img = clear_image(np.array(image))
-    elif option == "Phone 📱":
-        selected = True
-        img = clear_phone_image(np.array(image))
-    else:
-        selected = False
+    #selected = False #just to regulate sync between drop down option and the pipeline 
 
-    if selected: 
-        # https://stackoverflow.com/questions/64099248/pytesseract-improve-ocr-accuracy
-        config = '--oem 3 --psm %d' % 3 #psm = page segmentation; "single character recognition" = psm 10 --> but we want full page (see resource below)
-        #https://pyimagesearch.com/2021/11/15/tesseract-page-segmentation-modes-psms-explained-how-to-improve-your-ocr-accuracy/
+    
+    #option = st.selectbox("", ("Are you using a phone 📱 or a computer 💻?", "Phone 📱", "Computer 💻"))
+    
+    #if option == "Computer 💻":
+    #    selected = True
+    #    img = clear_image(np.array(image))
+    #elif option == "Phone 📱":
+    #    selected = True
+    #    img = clear_phone_image(np.array(Image.open("Testing/Unit-Tests/Phone/from-app.jpg")))
+    #else:
+    #    selected = False
 
-        text = pytesseract.image_to_string(img, config = config, lang='eng')
-        st.write(text)
+    #if selected: 
+    #    # https://stackoverflow.com/questions/64099248/pytesseract-improve-ocr-accuracy
+    #    config = '--oem 3 --psm %d' % 3 #psm = page segmentation; "single character recognition" = psm 10 --> but we want full page (see resource below)
+    #    #https://pyimagesearch.com/2021/11/15/tesseract-page-segmentation-modes-psms-explained-how-to-improve-your-ocr-accuracy/
 
-        return text
-    else:
-        return "- Waiting -"
+    #    text = pytesseract.image_to_string(img, config = config, lang='eng')
+    #    #st.write(text)
+
+    #    return text
+    #else:
+    #    return "😑"
+    
+    image = imutils.rotate(np.array(image), angle=-90)
+
+    st.image(image)
+
+    config = '--oem 3 --psm %d' % 3 #psm = page segmentation; "single character recognition" = psm 10 --> but we want full page (see resource below)
+    text = pytesseract.image_to_string(image, config = config, lang='eng')
+
+    st.write(text)
+
+    return text
+
 
 def clear_image(img):
 
@@ -54,6 +71,16 @@ def clear_image(img):
 
 def clear_phone_image(img):
 
-    #FILL
+    st.image(img)
+
+    #sharpening the image - from my phone, the photos through the app are pretty blurry and unclear (more so than my webcamera)
+    kernel = np.array([
+        [0, -1, 0], 
+        [-1, 5, -1], 
+        [0, -1, 0]
+        ])
+    image_sharp = cv2.filter2D(src=img, ddepth=-1, kernel=kernel)
+
+    st.image(image_sharp)
     
     return img

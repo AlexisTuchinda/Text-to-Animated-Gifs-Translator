@@ -39,7 +39,7 @@ def pipeline(image_file_buffer):
 
     if len(urls) == len(prompts):
         _carousel(
-            urls=urls, prompts=prompts, height=500
+            urls=urls, prompts=prompts, height=200
         )  # needs the urls and prompts, they need to be the same length, and the height of the carousel
     else:
         st.write("error")
@@ -47,7 +47,7 @@ def pipeline(image_file_buffer):
 
 def home():
     #logo
-    st.title("Book 📖 ➡️ GIF 🖼")
+    st.title("Book 📖  ➡️  GIF 🖼")
     
 
     image = st.file_uploader("Upload 📖", [".png", ".jpg", ".jpeg"])    

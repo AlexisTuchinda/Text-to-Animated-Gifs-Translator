@@ -1,13 +1,10 @@
 #use pytesseract (follow tutorials) --> create function which will pass in the camera input from app
 
 import pytesseract
-import cv2
 import numpy as np
 import streamlit as st
 import imutils
 
-
-from holding.scanner import scan
 
 #this is connection to exe file, originally supported for local hosting of this app
 pytesseract.tesseract_cmd = "holding/tesseract_exe/tesseract"

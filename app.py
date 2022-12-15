@@ -47,10 +47,10 @@ def pipeline(image_file_buffer):
 
 def home():
     #logo
-    st.title("Text to Animated GIFs (TAG)")
+    st.title("📖 ➡️ 🖼")
     
 
-    image = st.file_uploader("Upload photo of page / document", [".png", ".jpg", ".jpeg"])    
+    image = st.file_uploader("Upload 📖", [".png", ".jpg", ".jpeg"])    
     if image is not None:
         pipeline(image)
 

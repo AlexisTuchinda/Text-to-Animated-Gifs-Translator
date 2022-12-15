@@ -47,7 +47,7 @@ def pipeline(image_file_buffer):
 
 def home():
     #logo
-    st.title("📖 ➡️ 🖼")
+    st.title("Book 📖 ➡️ GIF 🖼")
     
 
     image = st.file_uploader("Upload 📖", [".png", ".jpg", ".jpeg"])    

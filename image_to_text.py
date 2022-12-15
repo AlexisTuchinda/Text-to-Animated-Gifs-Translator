@@ -19,7 +19,7 @@ def get_text(image):
     config = '--oem 3 --psm %d' % 3 #psm = page segmentation; "single character recognition" = psm 10 --> but we want full page (see resource below)
     text = pytesseract.image_to_string(image, config = config, lang='eng')
 
-    st.write(text)
+    #st.write(text)
 
     return text
 
